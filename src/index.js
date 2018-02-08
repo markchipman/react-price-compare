@@ -1,4 +1,4 @@
-import FPP from "./components/FeaturedPricingPlans";
+import FPP from "./components/FeaturedPricePlans";
 import FP from "./components/FeaturedPlan";
 import DPP from "./components/DetailedPricing";
 
