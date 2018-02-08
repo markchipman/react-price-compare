@@ -1,0 +1,18 @@
+/*=====================================================
+|   PLAN TABLE STYLES
+===================================================*/
+.plans-comparison {
+  font-size: 16px;
+}
+.plans-comparison .table tbody .empty {
+  background: #f5f5f5;
+}
+.plans-comparison .table tbody {
+  background: #fff;
+}
+.plans-comparison .table tbody .feature-name {
+  
+}
+.plans-comparison .table tbody .plan-value {
+  background: #fffde7;
+}
