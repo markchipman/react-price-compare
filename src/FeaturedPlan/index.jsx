@@ -5,7 +5,7 @@ import './styles.css'
 
 const ListItem = ({ id, icon, text, className = '' }) => {
   return <li key={id} className={className}>
-    {icon && <i className={`glyphicon glyphicon-${icon}`} />}
+    {icon && <i className={`glyphicon glyphicon-${icon}`}> </i>}
     {text}
   </li>
 }
@@ -80,7 +80,7 @@ class FeaturedPlan extends Component {
     const showImage = Boolean(image && typeof image === 'object')
 
     return <div className={innerClassName}>
-    
+
       <section className="price">
         <sup>{units}</sup>{price}
         <small>per month</small>

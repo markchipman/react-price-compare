@@ -1,6 +1,7 @@
 const icons = ['print', 'time', 'fire', 'tags', 'pushpin', 'email', 'console', 'scale', 'piggy-bank', 'phone-aly', 'link', 'paperclip']
 const colors = ['danger', 'warning', 'info', 'success']
-
+const randomIcon = () => icons[Math.floor(Math.random() * icons.length)]
+const randomColor = () => colors[Math.floor(Math.random() * colors.length)]
 
 function feature(name, rank = 1, defaultValue = '') {
   return (value) => ({
@@ -37,9 +38,10 @@ class Plan {
     this.details = Reflect.ownKeys(Plan.Features)
       .map(key => Plan.Features[key]())
     this.featuredItems = []
+    this.details = []
     this.className = popularity
-    this.color = color || colors[Math.floor(Math.random() * colors.length)]
-    this.icon = icon || icons[Math.floor(Math.random() * icons.length)]
+    this.color = color || randomColor()
+    this.icon = icon || randomIcon()
   }
 
   addFeaturedItems(...featuredItems) {
@@ -47,7 +49,7 @@ class Plan {
       featuredItems.map(feat => {
         return typeof feat === 'string' ? {
           text: feat,
-          icon: icons[Math.floor(Math.random() * icons.length)],
+          icon: randomIcon(),
         } : feat
       })
     )
