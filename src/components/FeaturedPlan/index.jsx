@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import './styles.css'
+//import './styles.css'
 
 
 const ListItem = ({ id, icon, text, className = '' }) => {
-  return <li key={id} className={className}>
+  return <li key={`${id}.${icon}.${text}`.replace(/\s/g, '-')} className={className}>
     {icon && <i className={`glyphicon glyphicon-${icon}`}> </i>}
     {text}
   </li>
@@ -59,11 +59,13 @@ class FeaturedPlan extends Component {
       colSize,
       image,
       plan: {
+        id: planId,
         price,
         featuredItems,
         color,
         name: planName,
-        available, className,
+        available,
+        className,
       },
     } = this.props
 
@@ -73,7 +75,7 @@ class FeaturedPlan extends Component {
 
     // optionAvailable :: Boolean
     // (Disables the button if plan is unavailable or no onSelection function)
-    const optionNotAvailable = Boolean(available && typeof onSelection !== 'function')
+    const optionNotAvailable = !(available && typeof onSelection === 'function')
 
     // showImage :: Boolean
     // (Render image if image object passed into props)
@@ -99,7 +101,7 @@ class FeaturedPlan extends Component {
 
       <div className="purchase-plan">
         <button
-          onClick={onSelection}
+          onClick={() => onSelection(planId)}
           disabled={optionNotAvailable}
           className="btn-lg purchase-btn"
         >

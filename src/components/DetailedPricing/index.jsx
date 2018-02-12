@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import './styles.css'
+//import './styles.css'
 
 
 class DetailedPricing extends Component {
@@ -47,14 +47,16 @@ class DetailedPricing extends Component {
   }
 
   static renderRowItem = ({ planFeature, planId }) => {
+    const displayValue = planFeature.value || planFeature.defaultValue
     const className = planFeature.value ? 'plan-value' : 'empty'
+    
     return (
       <td
-        className={`${className} text-center`}
+        className={`${ className } text-center`}
         key={planId}
       >
         <span className="text-muted">
-          {planFeature.value || '--'}
+          {displayValue || '--'}
         </span>
       </td>
     )

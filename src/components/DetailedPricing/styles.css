@@ -4,6 +4,9 @@
 .plans-comparison {
   font-size: 16px;
 }
+.plans-comparison .table thead th.plan-name {
+  text-align: center;
+}
 .plans-comparison .table tbody .empty {
   background: #f5f5f5;
 }

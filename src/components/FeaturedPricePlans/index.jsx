@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import FeaturedPlan from '../FeaturedPlan'
-import './styles.css'
+//import './styles.css'
 
 
 class FeaturedPricingPlans extends Component {
@@ -9,6 +9,7 @@ class FeaturedPricingPlans extends Component {
   static propTypes = {
     buttonText: PropTypes.string,
     colSize: PropTypes.number,
+    onSelection: PropTypes.func.isRequired,
     plans: PropTypes.arrayOf(
       PropTypes.shape({
         color: PropTypes.string,
@@ -23,7 +24,7 @@ class FeaturedPricingPlans extends Component {
         ),
         details: PropTypes.arrayOf(
           PropTypes.shape({
-            text: PropTypes.string.isRequired,
+            name: PropTypes.string.isRequired,
             icon: PropTypes.string,
           })
         ),
@@ -37,18 +38,6 @@ class FeaturedPricingPlans extends Component {
     buttonText: 'ORDER',
   }
 
-  static renderPlan = (wrapperClassName, buttonText) => plan => {
-    return (
-      <main className={wrapperClassName}>
-        <FeaturedPlan
-          key={plan.id}
-          plan={plan}
-          buttonText={buttonText}
-        />
-      </main>
-    )
-  }
-
   constructor(props) {
     super(props)
     const plans = props.plans || []
@@ -59,7 +48,7 @@ class FeaturedPricingPlans extends Component {
   }
 
   render() {
-    const { plans, colSize, buttonText } = this.state
+    const { plans, colSize, buttonText, onSelection } = this.state
     const { renderPlan } = FeaturedPricingPlans
 
     // wrapperClassName :: String
@@ -68,7 +57,18 @@ class FeaturedPricingPlans extends Component {
 
     return <section className="FeaturedPricingPlans row pb-3">
 
-      {plans && plans.map(renderPlan(wrapperClassName, buttonText))}
+      {plans && plans.map(plan => {
+        return (
+          <main className={wrapperClassName}>
+            <FeaturedPlan
+              key={plan.id}
+              plan={plan}
+              buttonText={buttonText}
+              onSelection={onSelection}
+            />
+          </main>
+        )
+      })}
 
     </section>
   }
