@@ -6,13 +6,15 @@ import PropTypes from 'prop-types'
 class DetailedPricing extends Component {
 
   static propTypes = {
+    inverse: PropTypes.bool,
     features: PropTypes.shape({}).isRequired,
     plans: PropTypes.arrayOf(
       PropTypes.shape({
         color: PropTypes.string,
+        className: PropTypes.string,
+        id: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         price: PropTypes.number,
-        id: PropTypes.string.isRequired,
         featuredItems: PropTypes.arrayOf(
           PropTypes.shape({
             text: PropTypes.string.isRequired,
@@ -32,30 +34,30 @@ class DetailedPricing extends Component {
 
   static defaultProps = {
     details: {},
+    inverse: true,
   }
 
   static renderHead = plan => {
     return (
       <th
         key={plan.id}
-        plan={plan}
-        className="plan-name"
+        className={`plan-name ${plan.className || ''}`}
       >
         {plan.name}
       </th>
     )
   }
 
-  static renderRowItem = ({ planFeature, planId }) => {
+  static renderRowItem = ({ planFeature, planId, columnClass }) => {
     const displayValue = planFeature.value || planFeature.defaultValue
-    const className = planFeature.value ? 'plan-value' : 'empty'
-    
+    const className = `${columnClass} ${displayValue ? 'plan-value' : 'empty'}`
+
     return (
       <td
         className={`${ className } text-center`}
         key={planId}
       >
-        <span className="text-muted">
+        <span className={columnClass || 'text-muted'}>
           {displayValue || '--'}
         </span>
       </td>
@@ -70,6 +72,7 @@ class DetailedPricing extends Component {
       return {
         planId: plan.id,
         planFeature: planFeature || feature,
+        columnClass: plan.className || '',
       }
     })
 
@@ -96,16 +99,16 @@ class DetailedPricing extends Component {
   }
 
   render() {
-    const { plans, features } = this.state
+    const { plans, features, inverse } = this.state
     const { renderHead, renderFeatureRow } = DetailedPricing
 
     return (
       <div className="plans-comparison">
-        <table className="table table-sm">
+        <table className={`table table-sm ${inverse ? 'inverse' : ''}`}>
           <thead>
             <tr>
-              <th key='details-heading'>
-                <span className='text-muted'>Features</span>
+              <th key='details-heading' className='features-column'>
+                <span>Features</span>
               </th>
               {plans && plans.map(renderHead)}
             </tr>
