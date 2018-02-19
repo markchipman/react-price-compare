@@ -41,8 +41,8 @@
 
 
 .FeaturedPricingPlans .inner.popular {
-  margin-top: 0.5rem;
-  z-index: 2;
+  margin-top: 0.675rem;
+  z-index: 5;
 }
 
 .FeaturedPricingPlans .inner.popular .price {

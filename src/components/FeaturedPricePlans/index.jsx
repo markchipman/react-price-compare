@@ -9,6 +9,7 @@ class FeaturedPricingPlans extends Component {
   static propTypes = {
     buttonText: PropTypes.string,
     colSize: PropTypes.number,
+    currency: PropTypes.string,
     onSelection: PropTypes.func.isRequired,
     plans: PropTypes.arrayOf(
       PropTypes.shape({
@@ -16,6 +17,7 @@ class FeaturedPricingPlans extends Component {
         name: PropTypes.string.isRequired,
         price: PropTypes.number,
         id: PropTypes.string.isRequired,
+        customBtnText: PropTypes.string,
         featuredItems: PropTypes.arrayOf(
           PropTypes.shape({
             text: PropTypes.string.isRequired,
@@ -36,6 +38,7 @@ class FeaturedPricingPlans extends Component {
   static defaultProps = {
     plans: [],
     buttonText: 'ORDER',
+    currency: '$',
   }
 
   constructor(props) {
@@ -48,7 +51,7 @@ class FeaturedPricingPlans extends Component {
   }
 
   render() {
-    const { plans, colSize, buttonText, onSelection } = this.state
+    const { currency, plans, colSize, buttonText, onSelection } = this.state
     const { renderPlan } = FeaturedPricingPlans
 
     // wrapperClassName :: String
@@ -61,6 +64,7 @@ class FeaturedPricingPlans extends Component {
         return (
           <main className={wrapperClassName}>
             <FeaturedPlan
+              units={currency}
               key={plan.id}
               plan={plan}
               buttonText={buttonText}

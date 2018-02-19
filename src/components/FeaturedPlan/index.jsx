@@ -28,6 +28,7 @@ class FeaturedPlan extends Component {
       price: PropTypes.number,
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
+      customBtnText: PropTypes.string,
       featuredItems: PropTypes.arrayOf(
         PropTypes.shape({
           text: PropTypes.string.isRequired,
@@ -66,6 +67,7 @@ class FeaturedPlan extends Component {
         name: planName,
         available,
         className,
+        customBtnText,
       },
     } = this.props
 
@@ -81,11 +83,14 @@ class FeaturedPlan extends Component {
     // (Render image if image object passed into props)
     const showImage = Boolean(image && typeof image === 'object')
 
+    const payCycleLabel = typeof price === 'number' ? 'per month' : 'negotiatable'
+    const priceLabel = `price ${typeof price !== 'number' ? 'label' : ''}`
+
     return <div className={innerClassName}>
 
-      <section className="price">
-        <sup>{units}</sup>{price}
-        <small>per month</small>
+      <section className={priceLabel}>
+        {units && <sup>{units}</sup>}{price}
+        <small>{payCycleLabel}</small>
       </section>
 
       <section className="type-wrapper">
@@ -105,7 +110,7 @@ class FeaturedPlan extends Component {
           disabled={optionNotAvailable}
           className="btn-lg purchase-btn"
         >
-          {buttonText}
+          {customBtnText || buttonText}
         </button>
       </div>
     </div>
