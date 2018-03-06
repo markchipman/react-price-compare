@@ -49,6 +49,7 @@ class FeaturedPlan extends Component {
       price: '--',
       available: true,
     },
+    trials: {},
   }
 
   render() {
@@ -68,6 +69,7 @@ class FeaturedPlan extends Component {
         available,
         className,
         customBtnText,
+        trials,
       },
     } = this.props
 
@@ -86,11 +88,24 @@ class FeaturedPlan extends Component {
     const payCycleLabel = typeof price === 'number' ? 'per month' : 'negotiatable'
     const priceLabel = `price ${typeof price !== 'number' ? 'label' : ''}`
 
+    const showBottomTrial = trial && trial.bottom && trial.bottom.content
+    const showTopTrial = trial && trial.top && trial.top.content
+
     return <div className={innerClassName}>
 
       <section className={priceLabel}>
         {units && <sup>{units}</sup>}{price}
         <small>{payCycleLabel}</small>
+        { showTopTrial && (
+          <div className="trial trial-top">
+          <button 
+            onClick={() => onSelection(trial.top.planId || planId)}
+            className='btn trial-btn'
+          >
+            { trial.top.content }
+          </button>
+          </div>
+        )}
       </section>
 
       <section className="type-wrapper">
@@ -113,6 +128,17 @@ class FeaturedPlan extends Component {
           {customBtnText || buttonText}
         </button>
       </div>
+
+      { showBottomTrial && (
+        <div className="trial trial-bottom">
+            <button 
+              onClick={() => onSelection(trial.bottom.planId || planId)}
+              className='btn trial-btn'
+            >
+              { trial.bottom.content }
+            </button>
+        </div>
+      )}
     </div>
   }
 }
