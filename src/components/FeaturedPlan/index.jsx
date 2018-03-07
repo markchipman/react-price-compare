@@ -29,6 +29,10 @@ class FeaturedPlan extends Component {
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
       customBtnText: PropTypes.string,
+      trials: PropTypes.shape({
+        top: PropTypes.object,
+        bottom: PropTypes.object,
+      }),
       featuredItems: PropTypes.arrayOf(
         PropTypes.shape({
           text: PropTypes.string.isRequired,
@@ -88,8 +92,8 @@ class FeaturedPlan extends Component {
     const payCycleLabel = typeof price === 'number' ? 'per month' : 'negotiatable'
     const priceLabel = `price ${typeof price !== 'number' ? 'label' : ''}`
 
-    const showBottomTrial = trial && trial.bottom && trial.bottom.content
-    const showTopTrial = trial && trial.top && trial.top.content
+    const showBottomTrial = trials && trials.bottom && trials.bottom.content
+    const showTopTrial = trials && trials.top && trials.top.content
 
     return <div className={innerClassName}>
 
@@ -99,10 +103,10 @@ class FeaturedPlan extends Component {
         { showTopTrial && (
           <div className="trial trial-top">
           <button 
-            onClick={() => onSelection(trial.top.planId || planId)}
+            onClick={() => onSelection(trials.top.planId || planId)}
             className='btn trial-btn'
           >
-            { trial.top.content }
+            { trials.top.content }
           </button>
           </div>
         )}
@@ -132,10 +136,10 @@ class FeaturedPlan extends Component {
       { showBottomTrial && (
         <div className="trial trial-bottom">
             <button 
-              onClick={() => onSelection(trial.bottom.planId || planId)}
+              onClick={() => onSelection(trials.bottom.planId || planId)}
               className='btn trial-btn'
             >
-              { trial.bottom.content }
+              { trials.bottom.content }
             </button>
         </div>
       )}
