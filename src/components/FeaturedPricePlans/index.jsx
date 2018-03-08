@@ -62,10 +62,9 @@ class FeaturedPricingPlans extends Component {
 
       {plans && plans.map(plan => {
         return (
-          <main className={wrapperClassName}>
+          <main key={plan.id} className={wrapperClassName}>
             <FeaturedPlan
-              units={currency}
-              key={plan.id}
+              units={currency} 
               plan={plan}
               buttonText={buttonText}
               onSelection={onSelection}

@@ -25,7 +25,7 @@ class FeaturedPlan extends Component {
     plan: PropTypes.shape({
       color: PropTypes.string,
       name: PropTypes.string.isRequired,
-      price: PropTypes.number,
+      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
       customBtnText: PropTypes.string,
