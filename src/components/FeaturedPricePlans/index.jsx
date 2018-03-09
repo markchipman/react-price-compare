@@ -33,6 +33,10 @@ class FeaturedPricingPlans extends Component {
           })
         ),
         available: PropTypes.bool,
+        trials: PropTypes.shape({
+          top: PropTypes.object,
+          bottom: PropTypes.object,
+        }),
       })
     ).isRequired,
   }
