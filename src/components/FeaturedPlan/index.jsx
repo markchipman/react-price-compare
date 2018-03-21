@@ -29,6 +29,7 @@ class FeaturedPlan extends Component {
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
       customBtnText: PropTypes.string,
+      payCycleLabel: PropTypes.string,
       trials: PropTypes.shape({
         top: PropTypes.object,
         bottom: PropTypes.object,
@@ -52,6 +53,7 @@ class FeaturedPlan extends Component {
       color: 'one',
       price: '--',
       available: true,
+      payCycleLabel: '',
     },
     trials: {},
   }
@@ -65,6 +67,7 @@ class FeaturedPlan extends Component {
       colSize,
       image,
       plan: {
+        payCycleLabel,
         id: planId,
         price,
         featuredItems,
@@ -89,7 +92,6 @@ class FeaturedPlan extends Component {
     // (Render image if image object passed into props)
     const showImage = Boolean(image && typeof image === 'object')
 
-    const payCycleLabel = typeof price === 'number' ? 'per month' : 'negotiatable'
     const priceLabel = `price ${typeof price !== 'number' ? 'label' : ''}`
 
     const showBottomTrial = trials && trials.bottom && trials.bottom.content
