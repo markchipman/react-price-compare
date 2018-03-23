@@ -15,20 +15,18 @@ class FeaturedPricingPlans extends Component {
       PropTypes.shape({
         color: PropTypes.string,
         name: PropTypes.string.isRequired,
-        price: PropTypes.oneOfType([
-          PropTypes.string, PropTypes.number,
-        ]),
+        price: PropTypes.node,
         id: PropTypes.string.isRequired,
         customBtnText: PropTypes.string,
         featuredItems: PropTypes.arrayOf(
           PropTypes.shape({
-            text: PropTypes.string.isRequired,
+            text: PropTypes.node.isRequired,
             icon: PropTypes.string,
           })
         ),
         details: PropTypes.arrayOf(
           PropTypes.shape({
-            name: PropTypes.string.isRequired,
+            name: PropTypes.node.isRequired,
             icon: PropTypes.string,
           })
         ),

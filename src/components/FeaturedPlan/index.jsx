@@ -15,7 +15,7 @@ class FeaturedPlan extends Component {
 
   static propTypes = {
     onSelection: PropTypes.func,
-    buttonText: PropTypes.string,
+    buttonText: PropTypes.node,
     units: PropTypes.string,
     colSize: PropTypes.number,
     image: PropTypes.shape({
@@ -24,8 +24,8 @@ class FeaturedPlan extends Component {
     }),
     plan: PropTypes.shape({
       color: PropTypes.string,
-      name: PropTypes.string.isRequired,
-      price: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+      name: PropTypes.node.isRequired,
+      price: PropTypes.node,
       id: PropTypes.string.isRequired,
       className: PropTypes.string,
       customBtnText: PropTypes.string,

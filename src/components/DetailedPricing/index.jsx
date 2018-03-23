@@ -13,11 +13,11 @@ class DetailedPricing extends Component {
         color: PropTypes.string,
         className: PropTypes.string,
         id: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired,
-        price: PropTypes.number,
+        name: PropTypes.node.isRequired,
+        price: PropTypes.node,
         featuredItems: PropTypes.arrayOf(
           PropTypes.shape({
-            text: PropTypes.string.isRequired,
+            text: PropTypes.node.isRequired,
             icon: PropTypes.string,
           })
         ),

@@ -1,6 +1,6 @@
 {
   "name": "react-price-compare",
-  "version": "0.2.7",
+  "version": "0.3.0",
   "description": "Create featured plan pricing side by side comparisons and detailed plan comparisons with easy to use components",
   "main": "build/index.js",
   "repository": "git@github.com:mrosata/react-price-compare.git",
